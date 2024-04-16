@@ -3,7 +3,17 @@
 # ~~~~
 
 # Home page
-GET        /                             controllers.Application.index
+GET         /                             controllers.Application.index
++ nocsrf
+GET         /login                        controllers.messageboard.login
++ nocsrf
+POST        /validate                     controllers.messageboard.validatelogin
++ nocsrf
+POST        /create                       controllers.messageboard.createlogin 
+POST        /send                         controllers.messageboard.sendMessage 
++ nocsrf
+GET         /logout                       controllers.messageboard.logout 
+GET         /messageboard                 controllers.messageboard.openmessageboard
 
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)

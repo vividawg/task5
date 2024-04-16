@@ -1,0 +1,41 @@
+@(generalmessage: Seq[String], privatemessage: Seq[String])(implicit request: RequestHeader, flash: Flash)
+
+
+@main("Login") {
+
+  <h2>Message Board</h2>
+  
+    <uL> 
+        @for(message <- generalmessage){
+            <li> @message </li>
+        }
+    </uL>
+  
+
+  
+  
+    
+  <h2> Private Message Board</h2>
+
+  @for(message <- privatemessage){
+    <li> @message </li>
+  }
+
+  <h2>Send a message</h2>
+
+  <form method="post" action="@routes.messageboard.sendMessage">
+    @helper.CSRF.formField
+        <label for = "recip"> recip </label>
+        <input type="text" name="recip" id = "recip"></input>
+
+        <label for = "message"> message </label>
+        <input type="text" name="message" id = "message"></input>
+        <input type = "submit" value = "send"></input>
+  </form>
+
+<div> 
+    <a href = "@routes.messageboard.logout"> Logout </a>
+</div>
+    
+
+}
